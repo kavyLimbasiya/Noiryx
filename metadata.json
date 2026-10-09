@@ -1,0 +1,6 @@
+{
+  "name": "Noiryx — 3D Interactive Wallpaper Discovery",
+  "description": "Dark, futuristic digital art gallery and desktop wallpaper showroom with interactive 3D hero previews, live laptop display, category navigation, and high-resolution visuals.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
