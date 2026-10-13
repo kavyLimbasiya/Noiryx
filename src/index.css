@@ -2,17 +2,7 @@
 
 @font-face {
   font-family: 'SuperBrigade';
-  src: url('./assets/font/super-brigade/SuperBrigadeItalic-G3Kxm.otf') format('opentype'),
-       url('./assets/images/font/super-brigade-font/SuperBrigadeItalic-G3Kxm.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Kryshna';
-  src: url('./assets/font/kryshna/Kryshna.otf') format('opentype'),
-       url('./assets/font/kryshna/Kryshna.ttf') format('truetype');
+  src: url('./assets/font/super-brigade/SuperBrigadeItalic-G3Kxm.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

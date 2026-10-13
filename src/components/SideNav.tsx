@@ -52,7 +52,14 @@ export const SideNav: React.FC<SideNavProps> = ({
     };
   }, [mobileOpen]);
 
-  const navLinks = [
+interface NavLinkItem {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  badge?: number;
+}
+
+  const navLinks: NavLinkItem[] = [
     { id: 'hero-preview', label: 'Home', icon: <Home size={17} /> },
     { id: 'categories', label: 'Categories', icon: <Grid size={17} /> },
     { id: 'normal', label: 'Wallpapers', icon: <Layers size={17} /> },
