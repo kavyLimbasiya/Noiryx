@@ -1,7 +1,10 @@
+import { getWallpaperUrl } from './url';
+
 /**
  * Helper to download any wallpaper strictly in JPG format and in its original size.
  */
 export async function downloadWallpaper(url: string, title: string): Promise<boolean> {
+  const resolvedUrl = getWallpaperUrl(url);
   const cleanTitle = title
     .trim()
     .replace(/[^a-zA-Z0-9_\-\s]/g, '')
@@ -24,7 +27,7 @@ export async function downloadWallpaper(url: string, title: string): Promise<boo
 
         const ctx = canvas.getContext('2d');
         if (!ctx) {
-          triggerFallbackDownload(url, targetFilename, resolve);
+          triggerFallbackDownload(resolvedUrl, targetFilename, resolve);
           return;
         }
 
@@ -39,7 +42,7 @@ export async function downloadWallpaper(url: string, title: string): Promise<boo
         canvas.toBlob(
           (blob) => {
             if (!blob) {
-              triggerFallbackDownload(url, targetFilename, resolve);
+              triggerFallbackDownload(resolvedUrl, targetFilename, resolve);
               return;
             }
 
@@ -61,16 +64,16 @@ export async function downloadWallpaper(url: string, title: string): Promise<boo
           0.95
         );
       } catch {
-        triggerFallbackDownload(url, targetFilename, resolve);
+        triggerFallbackDownload(resolvedUrl, targetFilename, resolve);
       }
     };
 
     img.onerror = () => {
-      triggerFallbackDownload(url, targetFilename, resolve);
+      triggerFallbackDownload(resolvedUrl, targetFilename, resolve);
     };
 
     // Trigger load
-    img.src = url;
+    img.src = resolvedUrl;
   });
 }
 

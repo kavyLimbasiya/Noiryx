@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Maximize2, AlertCircle } from 'lucide-react';
 import { Wallpaper } from '../data/wallpapers';
+import { getWallpaperUrl } from '../utils/url';
 
 interface WallpaperCardProps {
   wallpaper: Wallpaper;
@@ -14,23 +15,20 @@ export const WallpaperCard: React.FC<WallpaperCardProps> = ({
   onOpenModal,
   index = 1,
 }) => {
-  // Use fast WebP thumbnail for grid cards (~20KB instead of 5MB-10MB full raw image)
-  const thumbSrc = wallpaper.src.replace(
-    /\/assets\/wallpapers\/(png|jpg|jpeg|webp)\/(.+)\.(png|jpg|jpeg|webp|PNG|JPG|JPEG|WEBP)$/i,
-    '/assets/wallpapers/thumbnails/$1/$2.webp'
-  );
-
-  const [currentSrc, setCurrentSrc] = useState(thumbSrc);
+  const resolvedSrc = getWallpaperUrl(wallpaper.src);
+  const [currentSrc, setCurrentSrc] = useState(resolvedSrc);
   const [hasError, setHasError] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
+  useEffect(() => {
+    const nextSrc = getWallpaperUrl(wallpaper.src);
+    setCurrentSrc(nextSrc);
+    setHasError(false);
+    setLoaded(false);
+  }, [wallpaper.src]);
+
   const handleImageError = () => {
-    // If thumbnail failed, fallback to original high-res src
-    if (currentSrc !== wallpaper.src) {
-      setCurrentSrc(wallpaper.src);
-    } else {
-      setHasError(true);
-    }
+    setHasError(true);
   };
 
   return (

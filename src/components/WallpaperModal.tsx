@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { X, ArrowLeft, ArrowRight, Download } from 'lucide-react';
 import { Wallpaper } from '../data/wallpapers';
+import { getWallpaperUrl } from '../utils/url';
 
 interface WallpaperModalProps {
   wallpaper: Wallpaper | null;
@@ -126,9 +127,8 @@ export const WallpaperModal: React.FC<WallpaperModalProps> = ({
       <div className="modal-art" onClick={(e) => e.stopPropagation()}>
         <img
           key={wallpaper.id}
-          src={wallpaper.src}
+          src={getWallpaperUrl(wallpaper.src)}
           alt={wallpaper.title}
-
         />
       </div>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Wallpaper } from '../data/wallpapers';
+import { getWallpaperUrl } from '../utils/url';
 import heroAsset from '../assets/images/god_mode_hero.png';
 
 interface HeroLaptopPreviewProps {
@@ -95,9 +96,8 @@ export const HeroLaptopPreview: React.FC<HeroLaptopPreviewProps> = ({
           >
             <img
               key={currentWallpaper.id}
-              src={currentWallpaper.src}
+              src={getWallpaperUrl(currentWallpaper.src)}
               alt={currentWallpaper.title}
-
               loading="eager"
             />
             <span className="screen-scanline" />

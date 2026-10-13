@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sparkles, Maximize2, Heart, Play } from 'lucide-react';
 import { Wallpaper } from '../data/wallpapers';
+import { getWallpaperUrl } from '../utils/url';
 
 interface LiveWallpapersSectionProps {
   wallpapers: Wallpaper[];
@@ -63,9 +64,8 @@ export const LiveWallpapersSection: React.FC<LiveWallpapersSectionProps> = ({
 
                 {/* Wallpaper Media */}
                 <img
-                  src={wp.src}
+                  src={getWallpaperUrl(wp.src)}
                   alt={wp.title}
-
                   loading="lazy"
                   decoding="async"
                   className={`w-full h-full object-cover transition-transform duration-700 ${
